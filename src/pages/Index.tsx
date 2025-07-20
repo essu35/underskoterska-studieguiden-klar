@@ -2,8 +2,19 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { BookOpen, Brain, FileText, Users, Heart, Stethoscope, ClipboardCheck, Award } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Index = () => {
+  const getFeatureLink = (title: string) => {
+    switch (title) {
+      case "Cheat Sheets": return "/cheat-sheets";
+      case "Quiz & Övningar": return "/quiz";
+      case "Sammanfattningar": return "/summaries";
+      case "Praktiska Övningar": return "/practical-exercises";
+      default: return "/";
+    }
+  };
+
   const features = [
     {
       icon: FileText,
@@ -63,12 +74,16 @@ const Index = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up">
-              <Button variant="medical" size="lg" className="group">
-                Börja lära dig
-                <BookOpen className="ml-2 group-hover:scale-110 transition-transform" />
+              <Button variant="medical" size="lg" className="group" asChild>
+                <Link to="/cheat-sheets">
+                  Börja lära dig
+                  <BookOpen className="ml-2 group-hover:scale-110 transition-transform" />
+                </Link>
               </Button>
-              <Button variant="outline" size="lg">
-                Utforska innehåll
+              <Button variant="outline" size="lg" asChild>
+                <Link to="/summaries">
+                  Utforska innehåll
+                </Link>
               </Button>
             </div>
           </div>
@@ -135,8 +150,11 @@ const Index = () => {
                   <Button 
                     variant={feature.color as any} 
                     className="mt-6 w-full group-hover:shadow-medium transition-all duration-300"
+                    asChild
                   >
-                    Utforska {feature.title.toLowerCase()}
+                    <Link to={getFeatureLink(feature.title)}>
+                      Utforska {feature.title.toLowerCase()}
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>
