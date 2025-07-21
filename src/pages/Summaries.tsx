@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -5,6 +6,7 @@ import { ArrowLeft, Brain, Heart, Stethoscope, Users, Scale, BookOpen, Shield, E
 import { Link } from "react-router-dom";
 
 const Summaries = () => {
+  const [expandedSummary, setExpandedSummary] = useState<string | null>(null);
   const summaries = [
     {
       id: "anatomy-physiology",

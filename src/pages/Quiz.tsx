@@ -1,10 +1,171 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Brain, Target, Clock, Trophy, BookOpen, CheckCircle, AlertCircle, Star } from "lucide-react";
+import { ArrowLeft, Brain, Target, Clock, Trophy, BookOpen, CheckCircle, AlertCircle, Star, Play } from "lucide-react";
 import { Link } from "react-router-dom";
+import { QuizQuestion } from "@/components/QuizQuestion";
 
 const Quiz = () => {
+  const [activeQuiz, setActiveQuiz] = useState<string | null>(null);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [score, setScore] = useState(0);
+  const [quizCompleted, setQuizCompleted] = useState(false);
+
+  const sampleQuestions = {
+    "anatomy-physiology": [
+      {
+        id: "1",
+        question: "Vilket organ pumpar blod genom kroppen?",
+        options: ["Lungorna", "Hjärtat", "Levern", "Njurarna"],
+        correctAnswer: 1,
+        explanation: "Hjärtat fungerar som en pump som driver blod genom hela kroppen via blodkärlen.",
+        category: "Anatomi"
+      },
+      {
+        id: "2", 
+        question: "Vad kallas den process där syre tas upp i blodet?",
+        options: ["Circulation", "Gasutbyte", "Metabolism", "Digestion"],
+        correctAnswer: 1,
+        explanation: "Gasutbyte sker i lungorna där syre tas upp från luften och koldioxid avges.",
+        category: "Fysiologi"
+      },
+      {
+        id: "3",
+        question: "Vilken del av nervsystemet kontrollerar andning?",
+        options: ["Cerebrum", "Cerebellum", "Medulla oblongata", "Ryggmärgen"],
+        correctAnswer: 2,
+        explanation: "Medulla oblongata i hjärnstammen kontrollerar automatiska funktioner som andning och hjärtslag.",
+        category: "Neurologi"
+      }
+    ],
+    "vital-parameters": [
+      {
+        id: "1",
+        question: "Vad är normalt vilopuls för en vuxen?",
+        options: ["40-60 slag/min", "60-100 slag/min", "100-120 slag/min", "120-140 slag/min"],
+        correctAnswer: 1,
+        explanation: "Normal vilopuls för vuxna är 60-100 slag per minut. Tränade personer kan ha lägre puls.",
+        category: "Vitalparametrar"
+      },
+      {
+        id: "2",
+        question: "Vilket blodtryck anses som förhöjt?",
+        options: ["<120/80", "120-129/<80", "130-139/80-89", "≥140/90"],
+        correctAnswer: 3,
+        explanation: "Blodtryck ≥140/90 mmHg klassificeras som högt blodtryck (hypertoni) och kräver behandling.",
+        category: "Vitalparametrar"
+      }
+    ],
+    "medications": [
+      {
+        id: "1",
+        question: "Vad betyder förkortningen 'PO'?",
+        options: ["Per os (genom munnen)", "Post operationem", "Pro re nata", "Punkt och ordination"],
+        correctAnswer: 0,
+        explanation: "'Per os' betyder genom munnen och är det vanligaste sättet att ge läkemedel.",
+        category: "Läkemedel"
+      },
+      {
+        id: "2",
+        question: "Vilka är de '5 R:en' vid läkemedelshantering?",
+        options: [
+          "Rätt patient, läkemedel, dos, tid, sätt",
+          "Rätt doktor, patient, medicin, plats, datum", 
+          "Rätt sjuksköterska, läkemedel, dos, metod, kontroll",
+          "Rätt person, preparat, mängd, tidpunkt, dokumentation"
+        ],
+        correctAnswer: 0,
+        explanation: "De 5 R:en är: Rätt patient, rätt läkemedel, rätt dos, rätt tid och rätt administrationssätt.",
+        category: "Säkerhet"
+      }
+    ]
+  };
+
+  const startQuiz = (quizId: string) => {
+    setActiveQuiz(quizId);
+    setCurrentQuestion(0);
+    setScore(0);
+    setQuizCompleted(false);
+  };
+
+  const handleNextQuestion = () => {
+    const questions = sampleQuestions[activeQuiz as keyof typeof sampleQuestions];
+    if (currentQuestion + 1 < questions.length) {
+      setCurrentQuestion(prev => prev + 1);
+    } else {
+      setQuizCompleted(true);
+    }
+  };
+
+  const resetQuiz = () => {
+    setActiveQuiz(null);
+    setCurrentQuestion(0);
+    setScore(0);
+    setQuizCompleted(false);
+  };
+
+  if (activeQuiz && !quizCompleted) {
+    const questions = sampleQuestions[activeQuiz as keyof typeof sampleQuestions];
+    const question = questions[currentQuestion];
+    
+    return (
+      <div className="min-h-screen bg-gradient-bg">
+        <div className="container mx-auto px-4 py-8 max-w-4xl">
+          <div className="flex items-center gap-4 mb-8">
+            <Button variant="outline" size="sm" onClick={resetQuiz}>
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Avbryt quiz
+            </Button>
+            <div className="flex-1">
+              <div className="w-full bg-muted rounded-full h-2">
+                <div 
+                  className="bg-primary h-2 rounded-full transition-all duration-300"
+                  style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
+                />
+              </div>
+            </div>
+          </div>
+
+          <QuizQuestion
+            question={question}
+            onNext={handleNextQuestion}
+            questionNumber={currentQuestion + 1}
+            totalQuestions={questions.length}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  if (quizCompleted) {
+    const questions = sampleQuestions[activeQuiz as keyof typeof sampleQuestions];
+    const percentage = Math.round((score / questions.length) * 100);
+    
+    return (
+      <div className="min-h-screen bg-gradient-bg">
+        <div className="container mx-auto px-4 py-8 max-w-2xl">
+          <Card className="bg-gradient-card shadow-strong border-0 text-center">
+            <CardContent className="p-8">
+              <Trophy className="h-20 w-20 text-primary mx-auto mb-6" />
+              <h2 className="text-3xl font-bold text-foreground mb-4">Quiz avslutad!</h2>
+              <p className="text-xl text-muted-foreground mb-6">
+                Du fick {score} av {questions.length} rätt ({percentage}%)
+              </p>
+              <div className="space-y-4">
+                <Button onClick={resetQuiz} size="lg" className="w-full">
+                  Tillbaka till quiz-kategorier
+                </Button>
+                <Button variant="outline" onClick={() => startQuiz(activeQuiz!)} size="lg" className="w-full">
+                  Gör om quizet
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
+  }
   const quizCategories = [
     {
       id: "anatomy-physiology",
@@ -203,7 +364,10 @@ const Quiz = () => {
                     <Button 
                       variant={category.color as any} 
                       className="w-full group-hover:shadow-medium transition-all duration-300"
+                      onClick={() => startQuiz(category.id)}
+                      disabled={!sampleQuestions[category.id as keyof typeof sampleQuestions]}
                     >
+                      <Play className="mr-2 h-4 w-4" />
                       {category.completion > 0 ? "Fortsätt quiz" : "Starta quiz"}
                     </Button>
                   </CardContent>

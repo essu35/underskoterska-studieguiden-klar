@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -5,6 +6,7 @@ import { ArrowLeft, Activity, Thermometer, Droplet, Heart, Stethoscope, FileText
 import { Link } from "react-router-dom";
 
 const PracticalExercises = () => {
+  const [selectedExercise, setSelectedExercise] = useState<string | null>(null);
   const exercises = [
     {
       id: "blood-pressure",

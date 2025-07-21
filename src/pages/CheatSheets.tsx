@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -5,6 +6,7 @@ import { ArrowLeft, Heart, Thermometer, Droplets, Activity, Pill, Stethoscope, C
 import { Link } from "react-router-dom";
 
 const CheatSheets = () => {
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const cheatSheets = [
     {
       id: "vital-parameters",
