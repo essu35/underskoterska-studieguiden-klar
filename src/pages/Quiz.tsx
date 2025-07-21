@@ -6,12 +6,25 @@ import { ArrowLeft, Brain, Target, Clock, Trophy, BookOpen, CheckCircle, AlertCi
 import { Link } from "react-router-dom";
 import { QuizQuestion } from "@/components/QuizQuestion";
 
+interface QuizCategory {
+  id: string;
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  description: string;
+  badge: string;
+  color: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | "success" | "quiz";
+  difficulty: string;
+  estimatedTime: string;
+  completion: number;
+}
+
 const Quiz = () => {
   const [activeQuiz, setActiveQuiz] = useState<string | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
 
+  // Add more comprehensive question sets
   const sampleQuestions = {
     "anatomy-physiology": [
       {
@@ -37,6 +50,22 @@ const Quiz = () => {
         correctAnswer: 2,
         explanation: "Medulla oblongata i hjärnstammen kontrollerar automatiska funktioner som andning och hjärtslag.",
         category: "Neurologi"
+      },
+      {
+        id: "4",
+        question: "Hur många kammare har hjärtat?",
+        options: ["2", "3", "4", "5"],
+        correctAnswer: 2,
+        explanation: "Hjärtat har fyra kammare: två förmak och två kammare som pumpar blod till lungorna och kroppen.",
+        category: "Anatomi"
+      },
+      {
+        id: "5",
+        question: "Vad är den normala kroppstemperaturen?",
+        options: ["36°C", "37°C", "38°C", "39°C"],
+        correctAnswer: 1,
+        explanation: "Normal kroppstemperatur är cirka 37°C, men kan variera mellan 36,1-37,2°C.",
+        category: "Fysiologi"
       }
     ],
     "vital-parameters": [
@@ -55,6 +84,22 @@ const Quiz = () => {
         correctAnswer: 3,
         explanation: "Blodtryck ≥140/90 mmHg klassificeras som högt blodtryck (hypertoni) och kräver behandling.",
         category: "Vitalparametrar"
+      },
+      {
+        id: "3",
+        question: "Normal andningsfrekvens för vuxna är:",
+        options: ["8-12 andetag/min", "12-20 andetag/min", "20-30 andetag/min", "30-40 andetag/min"],
+        correctAnswer: 1,
+        explanation: "Normal andningsfrekvens för vuxna är 12-20 andetag per minut i vila.",
+        category: "Vitalparametrar"
+      },
+      {
+        id: "4",
+        question: "Syremättnad mäts med:",
+        options: ["Termometer", "Blodtrycksmätare", "Pulsoximeter", "Stetoskop"],
+        correctAnswer: 2,
+        explanation: "Pulsoximeter mäter syremättnad (SpO2) genom att skicka ljus genom huden.",
+        category: "Mätinstrument"
       }
     ],
     "medications": [
@@ -78,6 +123,52 @@ const Quiz = () => {
         correctAnswer: 0,
         explanation: "De 5 R:en är: Rätt patient, rätt läkemedel, rätt dos, rätt tid och rätt administrationssätt.",
         category: "Säkerhet"
+      },
+      {
+        id: "3",
+        question: "Vad betyder 'PRN' på en läkemedelsordination?",
+        options: ["Permanent", "Pro re nata (vid behov)", "Preventiv", "Primär"],
+        correctAnswer: 1,
+        explanation: "PRN betyder 'pro re nata' vilket betyder 'vid behov' - läkemedlet ges endast när patienten behöver det.",
+        category: "Ordinationer"
+      }
+    ],
+    "hygiene-infection": [
+      {
+        id: "1",
+        question: "Hur länge ska handdesinfektion pågå?",
+        options: ["10 sekunder", "20-30 sekunder", "1 minut", "2 minuter"],
+        correctAnswer: 1,
+        explanation: "Handdesinfektion ska pågå i 20-30 sekunder för att vara effektiv mot bakterier och virus.",
+        category: "Hygien"
+      },
+      {
+        id: "2",
+        question: "Vilken är den viktigaste åtgärden för att förhindra smittspridning?",
+        options: ["Munskydd", "Handhygien", "Skyddsrock", "Visir"],
+        correctAnswer: 1,
+        explanation: "Handhygien är den enskilt viktigaste åtgärden för att förhindra smittspridning i vårdmiljö.",
+        category: "Infektionskontroll"
+      }
+    ],
+    "psychiatry-communication": [
+      {
+        id: "1",
+        question: "Vad är aktivt lyssnande?",
+        options: ["Att bara höra vad som sägs", "Att lyssna och visa förståelse", "Att avbryta ofta", "Att ge råd direkt"],
+        correctAnswer: 1,
+        explanation: "Aktivt lyssnande innebär att verkligen lyssna, visa förståelse och bekräfta vad personen säger.",
+        category: "Kommunikation"
+      }
+    ],
+    "laws-ethics": [
+      {
+        id: "1",
+        question: "Vad innebär tystnadsplikt?",
+        options: ["Att inte prata med patienter", "Att inte diskutera patientinformation", "Att vara tyst på jobbet", "Att inte ställa frågor"],
+        correctAnswer: 1,
+        explanation: "Tystnadsplikt innebär att vårdpersonal inte får diskutera eller sprida patientinformation till obehöriga.",
+        category: "Juridik"
       }
     ]
   };
@@ -89,7 +180,11 @@ const Quiz = () => {
     setQuizCompleted(false);
   };
 
-  const handleNextQuestion = () => {
+  const handleNextQuestion = (isCorrect: boolean) => {
+    if (isCorrect) {
+      setScore(prev => prev + 1);
+    }
+    
     const questions = sampleQuestions[activeQuiz as keyof typeof sampleQuestions];
     if (currentQuestion + 1 < questions.length) {
       setCurrentQuestion(prev => prev + 1);
@@ -166,14 +261,14 @@ const Quiz = () => {
       </div>
     );
   }
-  const quizCategories = [
+  const quizCategories: QuizCategory[] = [
     {
       id: "anatomy-physiology",
       icon: Brain,
       title: "Anatomi & Fysiologi Quiz",
       description: "Testa dina kunskaper om kroppens organsystem",
       badge: "25 frågor",
-      color: "medical",
+      color: "default",
       difficulty: "Grundläggande",
       estimatedTime: "15 min",
       completion: 0
@@ -217,7 +312,7 @@ const Quiz = () => {
       title: "Psykiatri & Kommunikation",
       description: "Bemötande och samtalsteknik inom psykiatri",
       badge: "22 frågor",
-      color: "medical",
+      color: "default",
       difficulty: "Medel",
       estimatedTime: "18 min",
       completion: 0
@@ -362,7 +457,7 @@ const Quiz = () => {
                       )}
                     </div>
                     <Button 
-                      variant={category.color as any} 
+                      variant={category.color} 
                       className="w-full group-hover:shadow-medium transition-all duration-300"
                       onClick={() => startQuiz(category.id)}
                       disabled={!sampleQuestions[category.id as keyof typeof sampleQuestions]}
