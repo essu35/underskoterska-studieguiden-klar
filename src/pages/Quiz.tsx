@@ -24,7 +24,7 @@ const Quiz = () => {
   const [score, setScore] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
 
-  // Add more comprehensive question sets
+  // Comprehensive question sets for all categories
   const sampleQuestions = {
     "anatomy-physiology": [
       {
@@ -66,6 +66,30 @@ const Quiz = () => {
         correctAnswer: 1,
         explanation: "Normal kroppstemperatur är cirka 37°C, men kan variera mellan 36,1-37,2°C.",
         category: "Fysiologi"
+      },
+      {
+        id: "6",
+        question: "Vilken blodgrupp är universell givare?",
+        options: ["A+", "B-", "AB+", "O-"],
+        correctAnswer: 3,
+        explanation: "O- kan ge blod till alla andra blodgrupper eftersom den saknar A-, B- och Rh-antigen.",
+        category: "Hematologi"
+      },
+      {
+        id: "7",
+        question: "Var produceras insulin?",
+        options: ["Levern", "Njurarna", "Bukspottkörteln", "Sköldkörteln"],
+        correctAnswer: 2,
+        explanation: "Insulin produceras av beta-celler i Langerhans öar i bukspottkörteln.",
+        category: "Endokrinologi"
+      },
+      {
+        id: "8",
+        question: "Vilken del av ögat reglerar ljusinsläppet?",
+        options: ["Hornhinnan", "Iris", "Linsen", "Näthinna"],
+        correctAnswer: 1,
+        explanation: "Iris fungerar som en bländare och reglerar pupillens storlek för att kontrollera ljusinsläppet.",
+        category: "Oftalmologi"
       }
     ],
     "vital-parameters": [
@@ -100,6 +124,38 @@ const Quiz = () => {
         correctAnswer: 2,
         explanation: "Pulsoximeter mäter syremättnad (SpO2) genom att skicka ljus genom huden.",
         category: "Mätinstrument"
+      },
+      {
+        id: "5",
+        question: "Normal syremättnad för en frisk vuxen är:",
+        options: ["85-90%", "90-95%", "95-100%", "100%"],
+        correctAnswer: 2,
+        explanation: "Normal syremättnad (SpO2) är 95-100%. Värden under 95% kan indikera syrebrist.",
+        category: "Vitalparametrar"
+      },
+      {
+        id: "6",
+        question: "Vilken temperatur anses som feber?",
+        options: ["≥37,5°C", "≥38,0°C", "≥38,5°C", "≥39,0°C"],
+        correctAnswer: 1,
+        explanation: "Feber definieras som kroppstemperatur ≥38,0°C. Subfebril temperatur är 37,5-37,9°C.",
+        category: "Temperatur"
+      },
+      {
+        id: "7",
+        question: "Vad mäter Glasgow Coma Scale (GCS)?",
+        options: ["Smärta", "Medvetandegrad", "Blodtryck", "Andning"],
+        correctAnswer: 1,
+        explanation: "GCS mäter medvetandegrad genom att bedöma ögonöppning, verbal respons och motorisk respons.",
+        category: "Neurologi"
+      },
+      {
+        id: "8",
+        question: "Vad kallas det när hjärtat inte pumpar tillräckligt?",
+        options: ["Hjärtinfarkt", "Hjärtsvikt", "Arytmi", "Angina"],
+        correctAnswer: 1,
+        explanation: "Hjärtsvikt innebär att hjärtat inte kan pumpa tillräckligt med blod för att täcka kroppens behov.",
+        category: "Kardiologi"
       }
     ],
     "medications": [
@@ -131,6 +187,30 @@ const Quiz = () => {
         correctAnswer: 1,
         explanation: "PRN betyder 'pro re nata' vilket betyder 'vid behov' - läkemedlet ges endast när patienten behöver det.",
         category: "Ordinationer"
+      },
+      {
+        id: "4",
+        question: "Vad betyder 'IV' administrering?",
+        options: ["Intramuskulärt", "Intravenöst", "Intranasalt", "Intraossalt"],
+        correctAnswer: 1,
+        explanation: "IV betyder intravenöst - direkt i venen för snabb effekt.",
+        category: "Administrering"
+      },
+      {
+        id: "5",
+        question: "Vilken biverkning ska alltid rapporteras?",
+        options: ["Mild illamående", "Lätt huvudvärk", "Allergisk reaktion", "Trötthet"],
+        correctAnswer: 2,
+        explanation: "Allergiska reaktioner kan vara livshotande och måste alltid rapporteras omedelbart.",
+        category: "Säkerhet"
+      },
+      {
+        id: "6",
+        question: "Vad är viktigt före läkemedelsadministrering?",
+        options: ["Kontrollera identitet", "Fråga om allergier", "Kontrollera dos", "Alla ovanstående"],
+        correctAnswer: 3,
+        explanation: "Alla dessa kontroller är kritiska för patientsäkerhet vid läkemedelsadministrering.",
+        category: "Säkerhet"
       }
     ],
     "hygiene-infection": [
@@ -149,6 +229,30 @@ const Quiz = () => {
         correctAnswer: 1,
         explanation: "Handhygien är den enskilt viktigaste åtgärden för att förhindra smittspridning i vårdmiljö.",
         category: "Infektionskontroll"
+      },
+      {
+        id: "3",
+        question: "När ska skyddsutrustning användas?",
+        options: ["Bara vid operation", "Vid misstänkt smitta", "Endast med känd smitta", "Aldrig"],
+        correctAnswer: 1,
+        explanation: "Skyddsutrustning ska användas som försiktighetsåtgärd vid misstänkt eller känd smitta.",
+        category: "Infektionskontroll"
+      },
+      {
+        id: "4",
+        question: "Vad innebär kontaktsmittoisolering?",
+        options: ["Ingen kontakt alls", "Handskar och förkläde", "Bara munskydd", "Öppen dörr"],
+        correctAnswer: 1,
+        explanation: "Kontaktsmittoisolering kräver handskar och förkläde vid all patientkontakt.",
+        category: "Isolering"
+      },
+      {
+        id: "5",
+        question: "Hur länge efter antibiotikastart är en patient smittsam?",
+        options: ["Aldrig", "24-48 timmar", "1 vecka", "Hela behandlingen"],
+        correctAnswer: 1,
+        explanation: "De flesta bakterieinfektioner är inte längre smittsamma efter 24-48 timmar av antibiotika.",
+        category: "Smittskydd"
       }
     ],
     "psychiatry-communication": [
@@ -159,6 +263,30 @@ const Quiz = () => {
         correctAnswer: 1,
         explanation: "Aktivt lyssnande innebär att verkligen lyssna, visa förståelse och bekräfta vad personen säger.",
         category: "Kommunikation"
+      },
+      {
+        id: "2",
+        question: "Vad är empati inom vården?",
+        options: ["Att känna samma sak", "Att förstå patientens känslor", "Att döma patienten", "Att ge råd"],
+        correctAnswer: 1,
+        explanation: "Empati innebär att förstå och känna med patienten utan att själv ta på sig deras känslor.",
+        category: "Kommunikation"
+      },
+      {
+        id: "3",
+        question: "Hur bemöter man en aggressiv patient?",
+        options: ["Höja rösten", "Lugnt och respektfullt", "Vända ryggen till", "Hota med konsekvenser"],
+        correctAnswer: 1,
+        explanation: "Lugn, respektfull kommunikation och att inte ta det personligt är viktigt vid aggression.",
+        category: "Krishantering"
+      },
+      {
+        id: "4",
+        question: "Vad innebär personcentrerad vård?",
+        options: ["Fokus på sjukdom", "Fokus på personen", "Fokus på personal", "Fokus på ekonomi"],
+        correctAnswer: 1,
+        explanation: "Personcentrerad vård sätter personen i centrum och respekterar deras värderingar och önskemål.",
+        category: "Vårdfilosofi"
       }
     ],
     "laws-ethics": [
@@ -168,6 +296,38 @@ const Quiz = () => {
         options: ["Att inte prata med patienter", "Att inte diskutera patientinformation", "Att vara tyst på jobbet", "Att inte ställa frågor"],
         correctAnswer: 1,
         explanation: "Tystnadsplikt innebär att vårdpersonal inte får diskutera eller sprida patientinformation till obehöriga.",
+        category: "Juridik"
+      },
+      {
+        id: "2",
+        question: "Vad innebär informerat samtycke?",
+        options: ["Muntlig överenskommelse", "Skriftligt godkännande efter information", "Tyst acceptans", "Anhörigs beslut"],
+        correctAnswer: 1,
+        explanation: "Informerat samtycke innebär att patienten får fullständig information innan de ger sitt skriftliga godkännande.",
+        category: "Juridik"
+      },
+      {
+        id: "3",
+        question: "När får anmälan till IVO göras?",
+        options: ["Aldrig", "Vid vårdskada eller missförhållanden", "Bara av chefer", "Bara av patienter"],
+        correctAnswer: 1,
+        explanation: "Alla har rätt och skyldighet att anmäla vårdskador eller missförhållanden till IVO.",
+        category: "Tillsyn"
+      },
+      {
+        id: "4",
+        question: "Vad betyder autonomiprincipen?",
+        options: ["Personalens självbestämmande", "Patientens självbestämmande", "Ledningens beslut", "Läkarens auktoritet"],
+        correctAnswer: 1,
+        explanation: "Autonomiprincipen innebär att patienten har rätt till självbestämmande över sin egen vård.",
+        category: "Etik"
+      },
+      {
+        id: "5",
+        question: "När får tvångsvård användas?",
+        options: ["När patienten inte vill", "Vid allvarlig fara för liv och hälsa", "För personalens bekvämlighet", "Aldrig"],
+        correctAnswer: 1,
+        explanation: "Tvångsvård får endast användas när det finns allvarlig och omedelbar fara för patientens liv och hälsa.",
         category: "Juridik"
       }
     ]
@@ -261,16 +421,20 @@ const Quiz = () => {
       </div>
     );
   }
+  const getQuestionCount = (categoryId: string) => {
+    return sampleQuestions[categoryId as keyof typeof sampleQuestions]?.length || 0;
+  };
+
   const quizCategories: QuizCategory[] = [
     {
       id: "anatomy-physiology",
       icon: Brain,
       title: "Anatomi & Fysiologi Quiz",
       description: "Testa dina kunskaper om kroppens organsystem",
-      badge: "25 frågor",
+      badge: `${getQuestionCount("anatomy-physiology")} frågor`,
       color: "default",
       difficulty: "Grundläggande",
-      estimatedTime: "15 min",
+      estimatedTime: "8 min",
       completion: 0
     },
     {
@@ -278,10 +442,10 @@ const Quiz = () => {
       icon: Target,
       title: "Vitalparametrar",
       description: "Normalvärden och mätmetoder för vitalparametrar",
-      badge: "20 frågor",
+      badge: `${getQuestionCount("vital-parameters")} frågor`,
       color: "success",
       difficulty: "Lätt",
-      estimatedTime: "10 min",
+      estimatedTime: "8 min",
       completion: 0
     },
     {
@@ -289,10 +453,10 @@ const Quiz = () => {
       icon: AlertCircle,
       title: "Läkemedelshantering",
       description: "Säker hantering och administrering av läkemedel",
-      badge: "30 frågor",
+      badge: `${getQuestionCount("medications")} frågor`,
       color: "quiz",
       difficulty: "Medel",
-      estimatedTime: "20 min",
+      estimatedTime: "6 min",
       completion: 0
     },
     {
@@ -300,10 +464,10 @@ const Quiz = () => {
       icon: CheckCircle,
       title: "Hygien & Infektionsprevention",
       description: "Hygienrutiner och smittskydd i vårdmiljö",
-      badge: "18 frågor",
+      badge: `${getQuestionCount("hygiene-infection")} frågor`,
       color: "success",
       difficulty: "Lätt",
-      estimatedTime: "12 min",
+      estimatedTime: "5 min",
       completion: 0
     },
     {
@@ -311,10 +475,10 @@ const Quiz = () => {
       icon: Brain,
       title: "Psykiatri & Kommunikation",
       description: "Bemötande och samtalsteknik inom psykiatri",
-      badge: "22 frågor",
+      badge: `${getQuestionCount("psychiatry-communication")} frågor`,
       color: "default",
       difficulty: "Medel",
-      estimatedTime: "18 min",
+      estimatedTime: "4 min",
       completion: 0
     },
     {
@@ -322,10 +486,10 @@ const Quiz = () => {
       icon: Star,
       title: "Lagar & Etik",
       description: "Juridiska aspekter och etiska principer",
-      badge: "28 frågor",
+      badge: `${getQuestionCount("laws-ethics")} frågor`,
       color: "quiz",
       difficulty: "Svår",
-      estimatedTime: "25 min",
+      estimatedTime: "5 min",
       completion: 0
     }
   ];

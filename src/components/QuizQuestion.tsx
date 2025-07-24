@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, XCircle, AlertCircle } from "lucide-react";
+import { CheckCircle, XCircle, AlertCircle, Award, Target } from "lucide-react";
 
 interface QuizQuestionProps {
   question: {
@@ -41,95 +41,133 @@ export const QuizQuestion = ({ question, onNext, questionNumber, totalQuestions 
 
   const isCorrect = selectedAnswer === question.correctAnswer;
 
+  const getButtonStyle = (index: number) => {
+    if (!showResult) {
+      return selectedAnswer === index 
+        ? "border-primary bg-primary/20 text-primary scale-[1.02] shadow-medium" 
+        : "border-border hover:border-primary/50 hover:bg-primary/5 hover:scale-[1.01]";
+    }
+    
+    if (index === question.correctAnswer) {
+      return "border-success bg-success/20 text-success animate-pulse";
+    }
+    
+    if (selectedAnswer === index && index !== question.correctAnswer) {
+      return "border-destructive bg-destructive/20 text-destructive";
+    }
+    
+    return "border-muted text-muted-foreground opacity-60";
+  };
+
+  const getIcon = (index: number) => {
+    if (!showResult) return null;
+    
+    if (index === question.correctAnswer) {
+      return <CheckCircle className="h-6 w-6 text-success animate-bounce" />;
+    }
+    
+    if (selectedAnswer === index && index !== question.correctAnswer) {
+      return <XCircle className="h-6 w-6 text-destructive" />;
+    }
+    
+    return null;
+  };
+
   return (
-    <Card className="bg-gradient-card shadow-soft">
-      <CardHeader>
-        <div className="flex items-center justify-between mb-4">
-          <Badge variant="outline" className="bg-primary/5 text-primary border-primary/20">
-            {question.category}
-          </Badge>
-          <span className="text-sm text-muted-foreground">
-            Fråga {questionNumber} av {totalQuestions}
-          </span>
-        </div>
-        <CardTitle className="text-xl text-foreground">
-          {question.question}
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="space-y-3">
-          {question.options.map((option, index) => (
-            <button
-              key={index}
-              onClick={() => handleAnswerSelect(index)}
-              disabled={showResult}
-              className={`w-full p-4 text-left rounded-lg border-2 transition-all duration-200 ${
-                selectedAnswer === index
-                  ? showResult
-                    ? index === question.correctAnswer
-                      ? "border-green-500 bg-green-50 text-green-800"
-                      : "border-red-500 bg-red-50 text-red-800"
-                    : "border-primary bg-primary/5 text-primary"
-                  : showResult && index === question.correctAnswer
-                  ? "border-green-500 bg-green-50 text-green-800"
-                  : "border-muted hover:border-primary/50 bg-card hover:bg-primary/5"
-              }`}
-            >
-              <div className="flex items-center justify-between">
-                <span>{option}</span>
-                {showResult && (
-                  <div>
-                    {index === question.correctAnswer && (
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                    )}
-                    {selectedAnswer === index && index !== question.correctAnswer && (
-                      <XCircle className="h-5 w-5 text-red-600" />
-                    )}
+    <div className="animate-fade-in">
+      <Card className="bg-gradient-card shadow-strong border-0 overflow-hidden">
+        <CardHeader className="bg-gradient-to-r from-primary/5 to-primary/10 border-b border-primary/10">
+          <div className="flex items-center justify-between mb-4">
+            <Badge variant="outline" className="bg-primary/10 text-primary border-primary/30 font-semibold">
+              <Target className="h-3 w-3 mr-1" />
+              {question.category}
+            </Badge>
+            <div className="flex items-center gap-2">
+              <Award className="h-4 w-4 text-primary" />
+              <span className="text-sm font-medium text-muted-foreground">
+                {questionNumber} / {totalQuestions}
+              </span>
+            </div>
+          </div>
+          <CardTitle className="text-xl lg:text-2xl text-foreground leading-relaxed font-bold">
+            {question.question}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-6 lg:p-8 space-y-6">
+          <div className="space-y-4">
+            {question.options.map((option, index) => {
+              const Icon = getIcon(index);
+              return (
+                <button
+                  key={index}
+                  onClick={() => handleAnswerSelect(index)}
+                  disabled={showResult}
+                  className={`w-full p-5 text-left border-2 rounded-xl transition-all duration-300 hover:shadow-medium group ${getButtonStyle(index)}`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-current/10 flex items-center justify-center text-sm font-bold">
+                        {String.fromCharCode(65 + index)}
+                      </div>
+                      <span className="font-medium text-base lg:text-lg">{option}</span>
+                    </div>
+                    {Icon}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {showResult && (
+            <div className={`p-6 rounded-xl border-2 animate-scale-in ${
+              isCorrect 
+                ? "bg-gradient-to-r from-success/10 to-success/5 border-success/30" 
+                : "bg-gradient-to-r from-destructive/10 to-destructive/5 border-destructive/30"
+            }`}>
+              <div className="flex items-start gap-4">
+                {isCorrect ? (
+                  <div className="p-2 rounded-full bg-success/20">
+                    <CheckCircle className="h-6 w-6 text-success" />
+                  </div>
+                ) : (
+                  <div className="p-2 rounded-full bg-destructive/20">
+                    <AlertCircle className="h-6 w-6 text-destructive" />
                   </div>
                 )}
-              </div>
-            </button>
-          ))}
-        </div>
-
-        {showResult && (
-          <Card className={`border-2 ${isCorrect ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'}`}>
-            <CardContent className="p-4">
-              <div className="flex items-start gap-3">
-                {isCorrect ? (
-                  <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                ) : (
-                  <AlertCircle className="h-5 w-5 text-red-600 mt-0.5" />
-                )}
-                <div>
-                  <p className={`font-medium ${isCorrect ? 'text-green-800' : 'text-red-800'}`}>
-                    {isCorrect ? 'Rätt svar!' : 'Fel svar'}
+                <div className="flex-1">
+                  <p className="font-bold text-lg mb-2 text-foreground">
+                    {isCorrect ? "🎉 Rätt svar!" : "❌ Fel svar"}
                   </p>
-                  <p className={`text-sm mt-1 ${isCorrect ? 'text-green-700' : 'text-red-700'}`}>
+                  <p className="text-muted-foreground leading-relaxed">
                     {question.explanation}
                   </p>
                 </div>
               </div>
-            </CardContent>
-          </Card>
-        )}
-
-        <div className="flex gap-3 pt-4">
-          {!showResult ? (
-            <Button 
-              onClick={handleSubmit}
-              disabled={selectedAnswer === null}
-              className="flex-1"
-            >
-              Svara
-            </Button>
-          ) : (
-            <Button onClick={handleNext} className="flex-1">
-              {questionNumber === totalQuestions ? 'Avsluta quiz' : 'Nästa fråga'}
-            </Button>
+            </div>
           )}
-        </div>
-      </CardContent>
-    </Card>
+
+          <div className="flex gap-3 pt-4">
+            {!showResult ? (
+              <Button 
+                onClick={handleSubmit}
+                disabled={selectedAnswer === null}
+                size="lg"
+                className="flex-1 hover:scale-[1.02] transition-all duration-300 font-semibold text-lg py-6"
+              >
+                💫 Svara
+              </Button>
+            ) : (
+              <Button 
+                onClick={handleNext} 
+                size="lg"
+                className="flex-1 hover:scale-[1.02] transition-all duration-300 font-semibold text-lg py-6"
+              >
+                {questionNumber === totalQuestions ? "🏆 Avsluta quiz" : "➡️ Nästa fråga"}
+              </Button>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
