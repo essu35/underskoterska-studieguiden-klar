@@ -132,6 +132,102 @@ const PracticalExercises = () => {
         tips: ["Ange slag/min", "Beskriv avvikelser"],
         checkpoints: ["Puls dokumenterad", "Kvalitet beskriven"]
       }
+    ],
+    "wound-care": [
+      {
+        title: "Bedöm såret",
+        content: "Inspektera såret noggrant - storlek, djup, sårkanter och omgivande hud.",
+        tips: ["Använd god belysning", "Dokumentera med foto om möjligt", "Bedöm smärtnivå"],
+        checkpoints: ["Sårstorlek mätt", "Sårdjup bedömt", "Omgivande hud inspekterad"]
+      },
+      {
+        title: "Rengör såret",
+        content: "Rengör såret försiktigt med koksaltlösning eller kranvatten.",
+        tips: ["Använd inte väteperoxid", "Spola från rent till smutsigt", "Var försiktig med granulationsvävnad"],
+        checkpoints: ["Sår rengjort", "Debris avlägsnat", "Blödning kontrollerad"]
+      },
+      {
+        title: "Välj förband",
+        content: "Välj lämpligt förband baserat på sårtyp och exsudatmängd.",
+        tips: ["Torrt sår = fuktig miljö", "Våt sår = absorberande förband", "Infekterat sår = antimikrobiellt"],
+        checkpoints: ["Förbandstyp vald", "Storlek anpassad"]
+      },
+      {
+        title: "Applicera förband",
+        content: "Applicera förbandet sterilt och fixera säkert utan att strama åt.",
+        tips: ["Steril teknik", "Täck hela såret", "Lämna utrymme för svullnad"],
+        checkpoints: ["Förband applicerat", "Säkert fixerat", "Cirkulation kontrollerad"]
+      },
+      {
+        title: "Dokumentera",
+        content: "Dokumentera sårens utseende, behandling och patientens reaktion.",
+        tips: ["Beskriv objektivt", "Notera smärtnivå", "Planera nästa förbandsbyten"],
+        checkpoints: ["Dokumentation klar", "Uppföljning planerad"]
+      }
+    ],
+    "catheter-care": [
+      {
+        title: "Förberedelse",
+        content: "Samla material och informera patienten om proceduren.",
+        tips: ["Steril kateter", "Glidmedel", "Uppsamlingspåse", "Handskar"],
+        checkpoints: ["Material förberett", "Patient informerad", "Integritet säkrad"]
+      },
+      {
+        title: "Hygien och positionering",
+        content: "Tvätta händer, använd handskar och positionera patienten bekvämt.",
+        tips: ["Steril teknik", "Bekväm position", "God belysning"],
+        checkpoints: ["Handhygien utförd", "Patient positionerad", "Steril miljö"]
+      },
+      {
+        title: "Rengöring",
+        content: "Rengör genitalierna noggrant med antiseptisk lösning.",
+        tips: ["Rengör framifrån och bakåt", "Använd ny kompress för varje drag", "Låt torka"],
+        checkpoints: ["Området rengjort", "Antiseptik applicerad"]
+      },
+      {
+        title: "Kateterisering",
+        content: "För in katetern försiktigt tills urin kommer, för sedan in ytterligare 2-3 cm.",
+        tips: ["Använd glidmedel", "Försiktig teknik", "Stoppa vid motstånd"],
+        checkpoints: ["Kateter infört", "Urin flödar", "Ballong blåst upp"]
+      },
+      {
+        title: "Fixering och dokumentation",
+        content: "Fixera katetern säkert och koppla till uppsamlingspåse. Dokumentera.",
+        tips: ["Undvik drag", "Påse under blåsnivå", "Kontrollera flöde"],
+        checkpoints: ["Kateter fixerad", "Påse kopplad", "Dokumentation klar"]
+      }
+    ],
+    "medication-administration": [
+      {
+        title: "Kontrollera ordination",
+        content: "Läs ordinationen noggrant och kontrollera de 5 R:en.",
+        tips: ["Rätt patient, läkemedel, dos, tid, sätt", "Kontrollera allergier", "Dubbelkolla beräkningar"],
+        checkpoints: ["Ordination kontrollerad", "Allergier kontrollerade", "Dos beräknad"]
+      },
+      {
+        title: "Förbered läkemedel",
+        content: "Förbered läkemedlet under aseptiska förhållanden.",
+        tips: ["Kontrollera utgångsdatum", "Steril teknik vid injektioner", "Märk sprutor tydligt"],
+        checkpoints: ["Läkemedel förberett", "Sterilitet säkrad", "Märkning klar"]
+      },
+      {
+        title: "Identifiera patient",
+        content: "Kontrollera patientens identitet med ID-band och fråga om namn och personnummer.",
+        tips: ["Använd två identifierare", "Jämför med ordination", "Fråga patienten"],
+        checkpoints: ["Identitet bekräftad", "ID-band kontrollerat"]
+      },
+      {
+        title: "Administrera läkemedel",
+        content: "Ge läkemedlet enligt ordinationen och övervaka patienten.",
+        tips: ["Rätt teknik för administreringssätt", "Övervaka biverkningar", "Stanna hos patienten"],
+        checkpoints: ["Läkemedel givet", "Patient övervakas", "Inga direkta biverkningar"]
+      },
+      {
+        title: "Dokumentera",
+        content: "Dokumentera omedelbart efter given dos och övervaka effekt.",
+        tips: ["Dokumentera tid, dos, sätt", "Notera patientens reaktion", "Rapportera biverkningar"],
+        checkpoints: ["Dokumentation klar", "Effekt noterad", "Uppföljning planerad"]
+      }
     ]
   };
 
@@ -262,6 +358,45 @@ const PracticalExercises = () => {
       steps: 5,
       difficulty: "Lätt",
       equipment: ["Handdesinfektion", "Handskar", "Förkläde", "Munskydd"],
+      completed: false
+    },
+    {
+      id: "wound-care",
+      icon: Heart,
+      title: "Sårbehandling",
+      description: "Bedömning, rengöring och förbandsläggning av sår",
+      badge: "Omvårdnad",
+      color: "medical",
+      duration: "12 min",
+      steps: 5,
+      difficulty: "Medel",
+      equipment: ["Sterila handskar", "Koksaltlösning", "Förband", "Tejp"],
+      completed: false
+    },
+    {
+      id: "catheter-care",
+      icon: Droplet,
+      title: "Kateterisering",
+      description: "Säker insättning och skötsel av urinkateter",
+      badge: "Steril teknik",
+      color: "quiz",
+      duration: "18 min",
+      steps: 5,
+      difficulty: "Svår",
+      equipment: ["Steril kateter", "Glidmedel", "Antiseptik", "Uppsamlingspåse"],
+      completed: false
+    },
+    {
+      id: "medication-administration",
+      icon: Pill,
+      title: "Läkemedelsadministrering",
+      description: "Säker administrering av läkemedel enligt 5 R:en",
+      badge: "Säkerhet",
+      color: "success",
+      duration: "14 min",
+      steps: 5,
+      difficulty: "Medel",
+      equipment: ["Läkemedel", "Sprutor", "Nålar", "Alkoholservett"],
       completed: false
     }
   ];
@@ -469,21 +604,21 @@ const PracticalExercises = () => {
           <Card className="bg-card/80 backdrop-blur-sm">
             <CardContent className="p-6 text-center">
               <PlayCircle className="h-8 w-8 text-primary mx-auto mb-2" />
-              <div className="text-2xl font-bold text-foreground">8</div>
+              <div className="text-2xl font-bold text-foreground">{exercises.length}</div>
               <div className="text-sm text-muted-foreground">Övningar</div>
             </CardContent>
           </Card>
           <Card className="bg-card/80 backdrop-blur-sm">
             <CardContent className="p-6 text-center">
               <Clock className="h-8 w-8 text-quiz mx-auto mb-2" />
-              <div className="text-2xl font-bold text-foreground">82 min</div>
+              <div className="text-2xl font-bold text-foreground">{exercises.reduce((total, ex) => total + parseInt(ex.duration), 0)} min</div>
               <div className="text-sm text-muted-foreground">Total tid</div>
             </CardContent>
           </Card>
           <Card className="bg-card/80 backdrop-blur-sm">
             <CardContent className="p-6 text-center">
               <CheckCircle className="h-8 w-8 text-success mx-auto mb-2" />
-              <div className="text-2xl font-bold text-foreground">0/8</div>
+              <div className="text-2xl font-bold text-foreground">0/{exercises.length}</div>
               <div className="text-sm text-muted-foreground">Genomförda</div>
             </CardContent>
           </Card>

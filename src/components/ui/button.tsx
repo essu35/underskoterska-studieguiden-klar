@@ -21,6 +21,7 @@ const buttonVariants = cva(
         medical: "bg-gradient-primary text-primary-foreground hover:scale-105 shadow-medium hover:shadow-strong transition-all duration-300",
         success: "bg-gradient-success text-success-foreground hover:scale-105 shadow-soft hover:shadow-medium",
         quiz: "bg-card text-card-foreground border-2 border-border hover:border-primary hover:bg-gradient-card shadow-soft hover:shadow-medium transition-all duration-300",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-soft hover:shadow-medium",
       },
       size: {
         default: "h-10 px-4 py-2",

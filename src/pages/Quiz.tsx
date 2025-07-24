@@ -90,6 +90,38 @@ const Quiz = () => {
         correctAnswer: 1,
         explanation: "Iris fungerar som en bländare och reglerar pupillens storlek för att kontrollera ljusinsläppet.",
         category: "Oftalmologi"
+      },
+      {
+        id: "9",
+        question: "Vilken muskel är ansvarig för huvuddelen av andningen?",
+        options: ["Intercostalmuskler", "Diafragman", "Bukmusklerna", "Ryggmusklerna"],
+        correctAnswer: 1,
+        explanation: "Diafragman är den viktigaste andningsmuskeln och står för cirka 75% av andningsarbetet i vila.",
+        category: "Anatomi"
+      },
+      {
+        id: "10",
+        question: "Vad kallas kroppens största organ?",
+        options: ["Levern", "Lungorna", "Huden", "Hjärnan"],
+        correctAnswer: 2,
+        explanation: "Huden är kroppens största organ och utgör cirka 16% av kroppsvikten hos vuxna.",
+        category: "Anatomi"
+      },
+      {
+        id: "11",
+        question: "Vilken del av njuren filtrerar blodet?",
+        options: ["Glomerulus", "Henles slinga", "Samlarrör", "Njurbäcken"],
+        correctAnswer: 0,
+        explanation: "Glomerulus är ett kapillärknyte där blodfiltreringen sker i njurens nefron.",
+        category: "Fysiologi"
+      },
+      {
+        id: "12",
+        question: "Vad är normal pH i blodet?",
+        options: ["7,0-7,2", "7,35-7,45", "7,5-7,6", "7,8-8,0"],
+        correctAnswer: 1,
+        explanation: "Normal blod-pH är 7,35-7,45. Värden utanför detta intervall kan vara livshotande.",
+        category: "Fysiologi"
       }
     ],
     "vital-parameters": [
@@ -156,6 +188,22 @@ const Quiz = () => {
         correctAnswer: 1,
         explanation: "Hjärtsvikt innebär att hjärtat inte kan pumpa tillräckligt med blod för att täcka kroppens behov.",
         category: "Kardiologi"
+      },
+      {
+        id: "9",
+        question: "Vad är normal central venös tryck (CVP)?",
+        options: ["0-2 mmHg", "2-8 mmHg", "8-12 mmHg", "12-20 mmHg"],
+        correctAnswer: 1,
+        explanation: "Normalt CVP är 2-8 mmHg och reflekterar höger hjärtats fyllnadstryck.",
+        category: "Vitalparametrar"
+      },
+      {
+        id: "10",
+        question: "Vilken pulsoximetervärde kräver omedelbar åtgärd?",
+        options: ["98%", "95%", "92%", "88%"],
+        correctAnswer: 3,
+        explanation: "SpO2 under 90% kräver omedelbar åtgärd då det indikerar allvarlig syrebrist.",
+        category: "Akutvård"
       }
     ],
     "medications": [
@@ -211,6 +259,38 @@ const Quiz = () => {
         correctAnswer: 3,
         explanation: "Alla dessa kontroller är kritiska för patientsäkerhet vid läkemedelsadministrering.",
         category: "Säkerhet"
+      },
+      {
+        id: "7",
+        question: "Vad betyder 'SC' administrering?",
+        options: ["Subkutant", "Sublingualt", "Systemisk cirkulation", "Sterilt koncentrat"],
+        correctAnswer: 0,
+        explanation: "SC betyder subkutant - injektion under huden i det subkutana fettvävnadslagret.",
+        category: "Administrering"
+      },
+      {
+        id: "8",
+        question: "Vilken nålstorlek används vanligen för IM-injektioner?",
+        options: ["25G", "21-23G", "18G", "16G"],
+        correctAnswer: 1,
+        explanation: "21-23G nålar används för IM-injektioner för att säkerställa läkemedlet når muskelvävnaden.",
+        category: "Administrering"
+      },
+      {
+        id: "9",
+        question: "Vad är halveringstid för ett läkemedel?",
+        options: ["Tid till maximal effekt", "Tid för eliminering av hälften", "Tid för absorption", "Tid för metabolism"],
+        correctAnswer: 1,
+        explanation: "Halveringstid är tiden det tar för kroppen att eliminera hälften av läkemedlet från blodet.",
+        category: "Farmakokinetik"
+      },
+      {
+        id: "10",
+        question: "Vilken åtgärd vid anafylaktisk reaktion?",
+        options: ["Antihistamin", "Adrenalin", "Kortison", "Vänta och se"],
+        correctAnswer: 1,
+        explanation: "Adrenalin är förstahandsbehandling vid anafylaxi och ska ges omedelbart intramuskulärt.",
+        category: "Akutvård"
       }
     ],
     "hygiene-infection": [
@@ -253,6 +333,30 @@ const Quiz = () => {
         correctAnswer: 1,
         explanation: "De flesta bakterieinfektioner är inte längre smittsamma efter 24-48 timmar av antibiotika.",
         category: "Smittskydd"
+      },
+      {
+        id: "6",
+        question: "Vilken typ av isolering krävs vid tuberkulos?",
+        options: ["Kontaktisolering", "Droppsisolering", "Luftburen isolering", "Skyddsisolering"],
+        correctAnswer: 2,
+        explanation: "Tuberkulos kräver luftburen isolering med undertrycksrum och N95-mask.",
+        category: "Isolering"
+      },
+      {
+        id: "7",
+        question: "Vad är korrekt ordning för att ta av skyddsutrustning?",
+        options: ["Handskar, förkläde, mask, glasögon", "Förkläde, handskar, glasögon, mask", "Glasögon, förkläde, mask, handskar", "Handskar, glasögon, förkläde, mask"],
+        correctAnswer: 0,
+        explanation: "Korrekt ordning: handskar, förkläde, glasögon/visir, mask - från mest till minst kontaminerat.",
+        category: "Skyddsutrustning"
+      },
+      {
+        id: "8",
+        question: "Vilken koncentration alkohol krävs för effektiv handdesinfektion?",
+        options: ["60-70%", "70-85%", "85-95%", "95-100%"],
+        correctAnswer: 1,
+        explanation: "70-85% alkohol är mest effektivt för handdesinfektion - högre koncentrationer är mindre effektiva.",
+        category: "Hygien"
       }
     ],
     "psychiatry-communication": [
@@ -287,6 +391,30 @@ const Quiz = () => {
         correctAnswer: 1,
         explanation: "Personcentrerad vård sätter personen i centrum och respekterar deras värderingar och önskemål.",
         category: "Vårdfilosofi"
+      },
+      {
+        id: "5",
+        question: "Vad är SBAR-modellen?",
+        options: ["Situation, Background, Assessment, Recommendation", "Safety, Behavior, Action, Result", "Support, Balance, Attention, Response", "Structure, Behavior, Analysis, Review"],
+        correctAnswer: 0,
+        explanation: "SBAR är en strukturerad kommunikationsmodell: Situation, Background, Assessment, Recommendation.",
+        category: "Kommunikation"
+      },
+      {
+        id: "6",
+        question: "Vilken är en vanlig biverkning av antipsykotiska läkemedel?",
+        options: ["Viktminskning", "Extrapyramidala symtom", "Förbättrad kognition", "Ökad energi"],
+        correctAnswer: 1,
+        explanation: "Extrapyramidala symtom som tremor, stelhet och tardiv dyskinesi är vanliga biverkningar.",
+        category: "Psykofarmaka"
+      },
+      {
+        id: "7",
+        question: "Vad innebär suicidriskbedömning?",
+        options: ["Bara fråga om tankar", "Systematisk bedömning av risk", "Vänta på att patienten berättar", "Undvika ämnet"],
+        correctAnswer: 1,
+        explanation: "Suicidriskbedömning kräver systematisk utvärdering av riskfaktorer, skyddsfaktorer och akut risk.",
+        category: "Riskbedömning"
       }
     ],
     "laws-ethics": [
@@ -329,6 +457,100 @@ const Quiz = () => {
         correctAnswer: 1,
         explanation: "Tvångsvård får endast användas när det finns allvarlig och omedelbar fara för patientens liv och hälsa.",
         category: "Juridik"
+      },
+      {
+        id: "6",
+        question: "Vad innebär GDPR för vårdpersonal?",
+        options: ["Ingen förändring", "Striktare hantering av personuppgifter", "Mindre dokumentation", "Öppnare information"],
+        correctAnswer: 1,
+        explanation: "GDPR kräver striktare hantering av personuppgifter med tydligt syfte och patientens samtycke.",
+        category: "Juridik"
+      },
+      {
+        id: "7",
+        question: "Vad är Lex Maria?",
+        options: ["Patientlag", "Anmälningsskyldighet vid vårdskador", "Medicinsk forskning", "Personallag"],
+        correctAnswer: 1,
+        explanation: "Lex Maria är anmälningsskyldighet till IVO vid vårdskador eller risk för vårdskador.",
+        category: "Tillsyn"
+      },
+      {
+        id: "8",
+        question: "Vilken princip gäller vid etiska dilemman?",
+        options: ["Personalens önskemål", "Patientens bästa", "Ekonomiska faktorer", "Rutiner"],
+        correctAnswer: 1,
+        explanation: "Patientens bästa ska alltid vara vägledande vid etiska dilemman i vården.",
+        category: "Etik"
+      }
+    ],
+    "emergency-care": [
+      {
+        id: "1",
+        question: "Vad är första åtgärden vid hjärtstopp?",
+        options: ["Ring 112", "Starta hjärtkompressioner", "Kontrollera puls", "Ge andningar"],
+        correctAnswer: 1,
+        explanation: "Starta omedelbart hjärtkompressioner - varje sekund räknas vid hjärtstopp.",
+        category: "HLR"
+      },
+      {
+        id: "2",
+        question: "Vilken kompressionsfrekvens rekommenderas vid HLR?",
+        options: ["80-100/min", "100-120/min", "120-140/min", "140-160/min"],
+        correctAnswer: 1,
+        explanation: "Kompressionsfrekvens ska vara 100-120 per minut för optimal cirkulation.",
+        category: "HLR"
+      },
+      {
+        id: "3",
+        question: "Hur djupt ska hjärtkompressioner vara?",
+        options: ["3-4 cm", "5-6 cm", "7-8 cm", "9-10 cm"],
+        correctAnswer: 1,
+        explanation: "Kompressioner ska vara 5-6 cm djupa för att skapa tillräckligt tryck.",
+        category: "HLR"
+      },
+      {
+        id: "4",
+        question: "Vad är ABCDE-modellen?",
+        options: ["Airway, Breathing, Circulation, Disability, Exposure", "Assessment, Blood, Care, Drugs, Emergency", "Alert, Basic, Critical, Dangerous, Emergency", "Acute, Breathing, Cardiac, Diagnosis, Evaluation"],
+        correctAnswer: 0,
+        explanation: "ABCDE är systematisk bedömning: Airway, Breathing, Circulation, Disability, Exposure.",
+        category: "Akutbedömning"
+      },
+      {
+        id: "5",
+        question: "Vilken dos adrenalin ges vid anafylaxi?",
+        options: ["0,1 mg", "0,3-0,5 mg", "1 mg", "2 mg"],
+        correctAnswer: 1,
+        explanation: "0,3-0,5 mg adrenalin ges intramuskulärt vid anafylaktisk reaktion.",
+        category: "Läkemedel"
+      }
+    ],
+    "geriatric-care": [
+      {
+        id: "1",
+        question: "Vad är polyfarmaci?",
+        options: ["Många sjukdomar", "Många läkemedel", "Många vårdgivare", "Många symtom"],
+        correctAnswer: 1,
+        explanation: "Polyfarmaci innebär att en person tar många läkemedel samtidigt, vanligt hos äldre.",
+        category: "Geriatrik"
+      },
+      {
+        id: "2",
+        question: "Vilken är den vanligaste orsaken till fall hos äldre?",
+        options: ["Synproblem", "Läkemedelsbiverkningar", "Muskelsvaghet", "Alla ovanstående"],
+        correctAnswer: 3,
+        explanation: "Fall hos äldre har ofta multifaktoriella orsaker - syn, läkemedel och muskelsvaghet.",
+        category: "Fallprevention"
+      },
+      {
+        id: "3",
+        question: "Vad är delirium?",
+        options: ["Permanent förvirring", "Akut förvirringstillstånd", "Demenssjukdom", "Psykisk sjukdom"],
+        correctAnswer: 1,
+        explanation: "Delirium är ett akut, flukturerande förvirringstillstånd som ofta är reversibelt.",
+        category: "Geriatrik"
+      }
+    ]
       }
     ]
   };
@@ -434,7 +656,7 @@ const Quiz = () => {
       badge: `${getQuestionCount("anatomy-physiology")} frågor`,
       color: "default",
       difficulty: "Grundläggande",
-      estimatedTime: "8 min",
+      estimatedTime: "12 min",
       completion: 0
     },
     {
@@ -445,7 +667,7 @@ const Quiz = () => {
       badge: `${getQuestionCount("vital-parameters")} frågor`,
       color: "success",
       difficulty: "Lätt",
-      estimatedTime: "8 min",
+      estimatedTime: "10 min",
       completion: 0
     },
     {
@@ -456,7 +678,7 @@ const Quiz = () => {
       badge: `${getQuestionCount("medications")} frågor`,
       color: "quiz",
       difficulty: "Medel",
-      estimatedTime: "6 min",
+      estimatedTime: "10 min",
       completion: 0
     },
     {
@@ -467,7 +689,7 @@ const Quiz = () => {
       badge: `${getQuestionCount("hygiene-infection")} frågor`,
       color: "success",
       difficulty: "Lätt",
-      estimatedTime: "5 min",
+      estimatedTime: "8 min",
       completion: 0
     },
     {
@@ -478,7 +700,7 @@ const Quiz = () => {
       badge: `${getQuestionCount("psychiatry-communication")} frågor`,
       color: "default",
       difficulty: "Medel",
-      estimatedTime: "4 min",
+      estimatedTime: "7 min",
       completion: 0
     },
     {
@@ -489,7 +711,29 @@ const Quiz = () => {
       badge: `${getQuestionCount("laws-ethics")} frågor`,
       color: "quiz",
       difficulty: "Svår",
+      estimatedTime: "8 min",
+      completion: 0
+    },
+    {
+      id: "emergency-care",
+      icon: AlertCircle,
+      title: "Akutvård & HLR",
+      description: "Akuta situationer och hjärt-lungräddning",
+      badge: `${getQuestionCount("emergency-care")} frågor`,
+      color: "destructive",
+      difficulty: "Svår",
       estimatedTime: "5 min",
+      completion: 0
+    },
+    {
+      id: "geriatric-care",
+      icon: User,
+      title: "Geriatrisk vård",
+      description: "Specialiserad vård för äldre patienter",
+      badge: `${getQuestionCount("geriatric-care")} frågor`,
+      color: "secondary",
+      difficulty: "Medel",
+      estimatedTime: "3 min",
       completion: 0
     }
   ];
