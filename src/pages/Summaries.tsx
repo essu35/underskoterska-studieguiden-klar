@@ -137,6 +137,108 @@ const Summaries = () => {
           }
         ]
       }
+    },
+    {
+      id: "medication-management",
+      title: "Läkemedelshantering",
+      category: "Läkemedel",
+      icon: Stethoscope,
+      author: "Leg. Sjuksköterska Lisa Berg",
+      readTime: "7 min",
+      lastUpdated: "2024-01-20",
+      views: 1124,
+      description: "Säker läkemedelshantering från ordination till administrering",
+      content: {
+        overview: "Säker läkemedelshantering är avgörande för patientsäkerhet och kräver kunskap om de 5 R:en, biverkningar och interaktioner.",
+        keyPoints: [
+          "De 5 R:en: Rätt patient, läkemedel, dos, tid och administrationssätt",
+          "Kontrollera patientens identitet före varje administrering",
+          "Dokumentera omedelbart efter given dos",
+          "Rapportera alla biverkningar och medicinska fel"
+        ],
+        sections: [
+          {
+            title: "Ordinationer och förkortningar",
+            content: "PO = per os (genom munnen), IV = intravenöst, IM = intramuskulärt, PRN = vid behov, STAT = omedelbart. Kontrollera alltid otydliga ordinationer med läkare."
+          },
+          {
+            title: "Administreringstekniker",
+            content: "Oral: Ge med vatten om inget annat anges. Injektioner: Använd rätt nålstorlek och injektionsställe. Kontrollera alltid aspirering vid IM-injektioner för att undvika intravaskulär injektion."
+          },
+          {
+            title: "Biverkningar och interaktioner",
+            content: "Vanliga biverkningar: illamående, huvudvärk, hudutslag. Allvarliga: allergiska reaktioner, andningspåverkan. Kontrollera alltid interaktioner mellan läkemedel innan administrering."
+          }
+        ]
+      }
+    },
+    {
+      id: "geriatric-care",
+      title: "Geriatrisk vård",
+      category: "Patientgrupper",
+      icon: User,
+      author: "Geriatriksjuksköterska Ann Petersson",
+      readTime: "8 min",
+      lastUpdated: "2024-01-16",
+      views: 987,
+      description: "Specialiserad vård för äldre patienter med komplexa behov",
+      content: {
+        overview: "Geriatrisk vård fokuserar på äldre patienters unika behov med multimorbiditet, polyfarmaci och funktionsnedsättningar.",
+        keyPoints: [
+          "Äldre har ofta flera samtidiga sjukdomar (multimorbiditet)",
+          "Läkemedelsmetabolismen förändras med åldern",
+          "Fallprevention är central i äldrevården",
+          "Kognitiv bedömning är viktig för vårdplanering"
+        ],
+        sections: [
+          {
+            title: "Åldrandet och fysiologiska förändringar",
+            content: "Med åldern minskar njur- och leverfunktion vilket påverkar läkemedelsmetabolism. Muskelmassan minskar och balansen försämras. Syn och hörsel kan påverkas."
+          },
+          {
+            title: "Polyfarmaci och läkemedelsgenomgång",
+            content: "Äldre tar ofta många läkemedel vilket ökar risken för interaktioner och biverkningar. Regelbunden läkemedelsgenomgång och deprescribing kan vara nödvändig."
+          },
+          {
+            title: "Fallprevention",
+            content: "Riskfaktorer: läkemedel som påverkar balans, miljöhinder, muskelsvaghet, tidigare fall. Åtgärder: säker miljö, träning, läkemedelsgenomgång, hjälpmedel."
+          }
+        ]
+      }
+    },
+    {
+      id: "pediatric-care",
+      title: "Pediatrisk vård",
+      category: "Patientgrupper", 
+      icon: Heart,
+      author: "Barnsjuksköterska Emma Karlsson",
+      readTime: "6 min",
+      lastUpdated: "2024-01-14",
+      views: 756,
+      description: "Vård av barn och ungdomar med fokus på utveckling och familjecentrerad vård",
+      content: {
+        overview: "Pediatrisk vård kräver kunskap om normal utveckling, åldersanpassad kommunikation och familjecentrerad vård.",
+        keyPoints: [
+          "Dosering beräknas utifrån barnets vikt och ålder",
+          "Kommunikation anpassas efter utvecklingsnivå",
+          "Föräldrar/vårdnadshavare är viktiga vårdpartners",
+          "Smärtbedömning kan vara utmanande hos små barn"
+        ],
+        sections: [
+          {
+            title: "Åldersgrupper och utveckling",
+            content: "Spädbarn (0-1 år): grundläggande behov, tillväxt. Småbarn (1-3 år): språkutveckling, separationsångest. Förskola (3-6 år): lek som kommunikation. Skolåldern (6-12 år): konkret tänkande."
+          },
+          {
+            title: "Läkemedelsdosering",
+            content: "Beräknas per kg kroppsvikt eller per m² kroppsyta. Kontrollera alltid doseringar extra noga. Använd lämpliga administreringsformer - sirap istället för tabletter för småbarn."
+          },
+          {
+            title: "Familjecentrerad vård",
+            content: "Involvera familjen i vården. Respektera familjens värderingar och traditioner. Stöd föräldrar i deras omvårdnadsroll. Tänk på syskon som också påverkas."
+          }
+        ]
+      }
     }
   ];
 
