@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { BookOpen, Brain, FileText, Heart, Stethoscope, ClipboardCheck, Award, ArrowRight, Sparkles } from "lucide-react";
+import { BookOpen, Brain, FileText, Heart, Stethoscope, ClipboardCheck, Award, ArrowRight, Sparkles, Zap, Clock, Target, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -11,6 +11,9 @@ const Index = () => {
       case "Quiz & Övningar": return "/quiz";
       case "Sammanfattningar": return "/summaries";
       case "Praktiska Övningar": return "/practical-exercises";
+      case "Flashcards": return "/flashcards";
+      case "Studietimer": return "/study-timer";
+      case "Framsteg": return "/study-progress";
       default: return "/";
     }
   };
@@ -99,7 +102,7 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Main Features */}
+        {/* Main Features */}
       <div className="container mx-auto px-4 py-20">
         <div className="text-center mb-12">
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
@@ -109,6 +112,53 @@ const Index = () => {
             Vår plattform är designad specifikt för undersköterskor med praktiska verktyg 
             och resurser som verkligen gör skillnad i dina studier.
           </p>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          <Link to="/flashcards">
+            <Card className="p-6 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer group">
+              <div className="text-center">
+                <div className="p-3 rounded-lg bg-blue-500/10 group-hover:bg-blue-500/20 transition-colors inline-block mb-3">
+                  <Zap className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                </div>
+                <p className="font-semibold">Flashcards</p>
+              </div>
+            </Card>
+          </Link>
+
+          <Link to="/study-timer">
+            <Card className="p-6 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer group">
+              <div className="text-center">
+                <div className="p-3 rounded-lg bg-green-500/10 group-hover:bg-green-500/20 transition-colors inline-block mb-3">
+                  <Clock className="w-6 h-6 text-green-600 dark:text-green-400" />
+                </div>
+                <p className="font-semibold">Studietimer</p>
+              </div>
+            </Card>
+          </Link>
+
+          <Link to="/quiz">
+            <Card className="p-6 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer group">
+              <div className="text-center">
+                <div className="p-3 rounded-lg bg-purple-500/10 group-hover:bg-purple-500/20 transition-colors inline-block mb-3">
+                  <Target className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                </div>
+                <p className="font-semibold">Quiz</p>
+              </div>
+            </Card>
+          </Link>
+
+          <Link to="/study-progress">
+            <Card className="p-6 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer group">
+              <div className="text-center">
+                <div className="p-3 rounded-lg bg-orange-500/10 group-hover:bg-orange-500/20 transition-colors inline-block mb-3">
+                  <TrendingUp className="w-6 h-6 text-orange-600 dark:text-orange-400" />
+                </div>
+                <p className="font-semibold">Framsteg</p>
+              </div>
+            </Card>
+          </Link>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-20">
