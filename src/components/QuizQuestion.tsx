@@ -5,20 +5,14 @@ import { Badge } from "@/components/ui/badge";
 import { CheckCircle, XCircle, AlertCircle, Award, Target } from "lucide-react";
 
 interface QuizQuestionProps {
-  question: {
-    id: string;
-    question: string;
-    options: string[];
-    correctAnswer: number;
-    explanation: string;
-    category: string;
-  };
-  onNext: (isCorrect: boolean) => void;
-  questionNumber: number;
-  totalQuestions: number;
+  question: string;
+  options: string[];
+  correctAnswer: number;
+  explanation: string;
+  onAnswer: (isCorrect: boolean) => void;
 }
 
-export const QuizQuestion = ({ question, onNext, questionNumber, totalQuestions }: QuizQuestionProps) => {
+export const QuizQuestion = ({ question, options, correctAnswer, explanation, onAnswer }: QuizQuestionProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
 
@@ -33,13 +27,13 @@ export const QuizQuestion = ({ question, onNext, questionNumber, totalQuestions 
   };
 
   const handleNext = () => {
-    const isCorrect = selectedAnswer === question.correctAnswer;
-    onNext(isCorrect);
+    const isCorrect = selectedAnswer === correctAnswer;
+    onAnswer(isCorrect);
     setSelectedAnswer(null);
     setShowResult(false);
   };
 
-  const isCorrect = selectedAnswer === question.correctAnswer;
+  const isCorrect = selectedAnswer === correctAnswer;
 
   const getButtonStyle = (index: number) => {
     if (!showResult) {
@@ -48,11 +42,11 @@ export const QuizQuestion = ({ question, onNext, questionNumber, totalQuestions 
         : "border-border hover:border-primary/50 hover:bg-primary/5 hover:scale-[1.01]";
     }
     
-    if (index === question.correctAnswer) {
+    if (index === correctAnswer) {
       return "border-success bg-success/20 text-success animate-pulse";
     }
     
-    if (selectedAnswer === index && index !== question.correctAnswer) {
+    if (selectedAnswer === index && index !== correctAnswer) {
       return "border-destructive bg-destructive/20 text-destructive";
     }
     
@@ -62,11 +56,11 @@ export const QuizQuestion = ({ question, onNext, questionNumber, totalQuestions 
   const getIcon = (index: number) => {
     if (!showResult) return null;
     
-    if (index === question.correctAnswer) {
+    if (index === correctAnswer) {
       return <CheckCircle className="h-6 w-6 text-success animate-bounce" />;
     }
     
-    if (selectedAnswer === index && index !== question.correctAnswer) {
+    if (selectedAnswer === index && index !== correctAnswer) {
       return <XCircle className="h-6 w-6 text-destructive" />;
     }
     
@@ -77,25 +71,13 @@ export const QuizQuestion = ({ question, onNext, questionNumber, totalQuestions 
     <div className="animate-fade-in">
       <Card className="bg-gradient-card shadow-strong border-0 overflow-hidden">
         <CardHeader className="bg-gradient-to-r from-primary/5 to-primary/10 border-b border-primary/10">
-          <div className="flex items-center justify-between mb-4">
-            <Badge variant="outline" className="bg-primary/10 text-primary border-primary/30 font-semibold">
-              <Target className="h-3 w-3 mr-1" />
-              {question.category}
-            </Badge>
-            <div className="flex items-center gap-2">
-              <Award className="h-4 w-4 text-primary" />
-              <span className="text-sm font-medium text-muted-foreground">
-                {questionNumber} / {totalQuestions}
-              </span>
-            </div>
-          </div>
           <CardTitle className="text-xl lg:text-2xl text-foreground leading-relaxed font-bold">
-            {question.question}
+            {question}
           </CardTitle>
         </CardHeader>
         <CardContent className="p-6 lg:p-8 space-y-6">
           <div className="space-y-4">
-            {question.options.map((option, index) => {
+            {options.map((option, index) => {
               const Icon = getIcon(index);
               return (
                 <button
@@ -139,7 +121,7 @@ export const QuizQuestion = ({ question, onNext, questionNumber, totalQuestions 
                     {isCorrect ? "🎉 Rätt svar!" : "❌ Fel svar"}
                   </p>
                   <p className="text-muted-foreground leading-relaxed">
-                    {question.explanation}
+                    {explanation}
                   </p>
                 </div>
               </div>
@@ -162,7 +144,7 @@ export const QuizQuestion = ({ question, onNext, questionNumber, totalQuestions 
                 size="lg"
                 className="flex-1 hover:scale-[1.02] transition-all duration-300 font-semibold text-lg py-6"
               >
-                {questionNumber === totalQuestions ? "🏆 Avsluta quiz" : "➡️ Nästa fråga"}
+                ➡️ Nästa fråga
               </Button>
             )}
           </div>

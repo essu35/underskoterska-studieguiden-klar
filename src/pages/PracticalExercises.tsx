@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Activity, Thermometer, Heart, FileText, Droplet, Stethoscope, Users, PlayCircle, Clock, CheckCircle } from "lucide-react";
+import { ArrowLeft, Activity, Thermometer, Heart, FileText, Droplet, Stethoscope, Users, PlayCircle, Clock, CheckCircle, Pill } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface ExerciseStep {
